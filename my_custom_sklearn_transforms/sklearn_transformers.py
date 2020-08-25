@@ -12,5 +12,23 @@ class DropColumns(BaseEstimator, TransformerMixin):
     def transform(self, X):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
         data = X.copy()
+        
+        print(data)
+        
+        sos = data['OBJETIVO'] == 'Sospechoso'
+        sos2 = data[sos]
+        data0 = sos2[0:-1]
+
+        sos3 = data['OBJETIVO'] == 'Sospechoso'
+        sos4 = data[sos3]
+        data1 = sos4[0:-1]
+
+        ss = pd.concat([data, data0])
+        sss = pd.concat([ss, data1])
+
+        data = sss
+        data = shuffle(data)
+        data
+        
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
