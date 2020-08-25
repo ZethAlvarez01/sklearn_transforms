@@ -22,11 +22,16 @@ class DropColumns(BaseEstimator, TransformerMixin):
         sos3 = data['OBJETIVO'] == 'Sospechoso'
         sos4 = data[sos3]
         data1 = sos4[0:-1]
+        
+        sos5 = data['OBJETIVO'] == 'Sospechoso'
+        sos6 = data[sos5]
+        data2 = sos6[0:-1]
 
         ss = pd.concat([data, data0])
         sss = pd.concat([ss, data1])
+        ssss = pd.concat([sss,data2])
 
-        data = sss
+        data = ssss
         data = shuffle(data)
         data
         
